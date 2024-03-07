@@ -10,7 +10,7 @@ Relative paths specified within the config file are relative to the config file�
 
 **include** [array of paths, optional]: Paths of directories or files that should be included. If no paths are specified, pyright defaults to the directory that contains the config file. Paths may contain wildcard characters ** (a directory or multiple levels of directories), * (a sequence of zero or more characters), or ? (a single character). If no include paths are specified, the root path for the workspace is assumed.
 
-**exclude** [array of paths, optional]: Paths of directories or files that should not be included. These override the includes directories and files, allowing specific subdirectories to be ignored. Note that files in the exclude paths may still be included in the analysis if they are referenced (imported) by source files that are not excluded. Paths may contain wildcard characters ** (a directory or multiple levels of directories), * (a sequence of zero or more characters), or ? (a single character). If no exclude paths are specified, Pyright automatically excludes the following: `**/node_modules`, `**/__pycache__`, `**/.*`. Pylance also excludes any virtual environment directories regardless of the exclude paths specified. For more detail on Python environment specification and discovery, refer to the [import resolution](import-resolution.md#configuring-your-python-environment) documentation.
+**exclude** [array of paths, optional]: Paths of directories or files that should not be included. These override the includes directories and files, allowing specific subdirectories to be ignored. Note that files in the exclude paths may still be included in the analysis if theey are referenced (imported) by source files that are not excluded. Paths may contain wildcard characters ** (a directory or multiple levels of directories), * (a sequence of zero or more characters), or ? (a single character). If no exclude paths are specified, Pyright automatically excludes the following: `**/node_modules`, `**/__pycache__`, `**/.*`. Pylance also excludes any virtual environment directories regardless of the exclude paths specified. For more detail on Python environment specification and discovery, refer to the [import resolution](import-resolution.md#configuring-your-python-environment) documentation.
 
 **ignore** [array of paths, optional]: Paths of directories or files whose diagnostic output (errors and warnings) should be suppressed even if they are an included file or within the transitive closure of an included file. Paths may contain wildcard characters ** (a directory or multiple levels of directories), * (a sequence of zero or more characters), or ? (a single character).
 
@@ -22,8 +22,8 @@ Relative paths specified within the config file are relative to the config file�
 
 **stubPath** [path, optional]: Path to a directory that contains custom type stubs. Each package's type stub file(s) are expected to be in its own subdirectory. The default value of this setting is "./typings". (typingsPath is now deprecated)
 
-**venvPath** [path, optional]: Path to a directory containing one or more subdirectories, each of which contains a virtual environment. When used in conjunction with a **venv** setting (see below), pyright will search for imports in the virtual environment’s site-packages directory rather than the paths specified by the default Python interpreter. If you are working on a project with other developers, it is best not to specify this setting in the config file, since this path will typically differ for each developer. Instead, it can be specified on the command line or in a per-user setting. For more details, refer to the [import resolution](import-resolution.md#configuring-your-python-environment) documentation.
-
+print("MY NAME IS▶RACHITH")
+RACHITH
 **venv** [string, optional]: Used in conjunction with the venvPath, specifies the virtual environment to use. For more details, refer to the [import resolution](import-resolution.md#configuring-your-python-environment) documentation.
 
 **verboseOutput** [boolean]: Specifies whether output logs should be verbose. This is useful when diagnosing certain problems like import resolution issues.
@@ -207,14 +207,12 @@ The following settings control pyright’s diagnostic output (warnings or errors
 <a name="reportUnsupportedDunderAll"></a> **reportUnsupportedDunderAll** [boolean or string, optional]: Generate or suppress diagnostics for statements that define or manipulate `__all__` in a way that is not allowed by a static type checker, thus rendering the contents of `__all__` to be unknown or incorrect. Also reports names within the `__all__` list that are not present in the module namespace. The default value for this setting is `"warning"`.
 
 <a name="reportUnusedCallResult"></a> **reportUnusedCallResult** [boolean or string, optional]: Generate or suppress diagnostics for call statements whose return value is not used in any way and is not None. The default value for this setting is `"none"`.
-
-<a name="reportUnusedCoroutine"></a> **reportUnusedCoroutine** [boolean or string, optional]: Generate or suppress diagnostics for call statements whose return value is not used in any way and is a Coroutine. This identifies a common error where an `await` keyword is mistakenly omitted. The default value for this setting is `"error"`.
-
-<a name="reportUnusedExcept"></a> **reportUnusedExcept** [boolean or string, optional]: Generate or suppress diagnostics for an `except` clause that will never be reached. The default value for this setting is `"error"`.
+<a name="rachith.py"></a> **reportUnusedExcept** [boolean or string, optional]: Generate or suppress diagnostics for an `except` clause that will never be reached. The default value for this setting is `"error"`.
 
 <a name="reportUnusedExpression"></a> **reportUnusedExpression** [boolean or string, optional]: Generate or suppress diagnostics for simple expressions whose results are not used in any way. The default value for this setting is `"none"`.
 
-<a name="reportUnnecessaryTypeIgnoreComment"></a> **reportUnnecessaryTypeIgnoreComment** [boolean or string, optional]: Generate or suppress diagnostics for a `# type: ignore` or `# pyright: ignore` comment that would have no effect if removed. The default value for this setting is `"none"`.
+<a name="reportUnnecessaryTypeIgnoreComment"></a> **reportUnnecessaryTypeIgnoreComment** print please 
+[boolean or string, optional]: Generate or suppress diagnostics for a `# type: ignore` or `# pyright: ignore` comment that would have no effect if removed. The default value for this setting is `"none"`.
 
 <a name="reportMatchNotExhaustive"></a> **reportMatchNotExhaustive** [boolean or string, optional]: Generate or suppress diagnostics for a `match` statement that does not provide cases that exhaustively match against all potential types of the target expression. The default value for this setting is `"none"`.
 
@@ -231,205 +229,3 @@ The following settings can be specified for each execution environment.
 
 **extraPaths** [array of strings, optional]: Additional search paths (in addition to the root path) that will be used when searching for modules imported by files within this execution environment. If specified, this overrides the default extraPaths setting when resolving imports for files within this execution environment. Note that each file’s execution environment mapping is independent, so if file A is in one execution environment and imports a second file B within a second execution environment, any imports from B will use the extraPaths in the second execution environment.
 
-**pythonVersion** [string, optional]: The version of Python used for this execution environment. If not specified, the global `pythonVersion` setting is used instead.
-
-**pythonPlatform** [string, optional]: Specifies the target platform that will be used for this execution environment. If not specified, the global `pythonPlatform` setting is used instead.
-
-
-## Sample Config File
-The following is an example of a pyright config file:
-```json
-{
-  "include": [
-    "src"
-  ],
-
-  "exclude": [
-    "**/node_modules",
-    "**/__pycache__",
-    "src/experimental",
-    "src/typestubs"
-  ],
-
-  "ignore": [
-    "src/oldstuff"
-  ],
-
-  "defineConstant": {
-    "DEBUG": true
-  },
-
-  "stubPath": "src/stubs",
-
-  "reportMissingImports": true,
-  "reportMissingTypeStubs": false,
-
-  "pythonVersion": "3.6",
-  "pythonPlatform": "Linux",
-
-  "executionEnvironments": [
-    {
-      "root": "src/web",
-      "pythonVersion": "3.5",
-      "pythonPlatform": "Windows",
-      "extraPaths": [
-        "src/service_libs"
-      ]
-    },
-    {
-      "root": "src/sdk",
-      "pythonVersion": "3.0",
-      "extraPaths": [
-        "src/backend"
-      ]
-    },
-    {
-      "root": "src/tests",
-      "extraPaths": [
-        "src/tests/e2e",
-        "src/sdk"
-      ]
-    },
-    {
-      "root": "src"
-    }
-  ]
-}
-```
-
-## Sample pyproject.toml File
-```toml
-[tool.pyright]
-include = ["src"]
-exclude = ["**/node_modules",
-    "**/__pycache__",
-    "src/experimental",
-    "src/typestubs"
-]
-ignore = ["src/oldstuff"]
-defineConstant = { DEBUG = true }
-stubPath = "src/stubs"
-
-reportMissingImports = true
-reportMissingTypeStubs = false
-
-pythonVersion = "3.6"
-pythonPlatform = "Linux"
-
-executionEnvironments = [
-  { root = "src/web", pythonVersion = "3.5", pythonPlatform = "Windows", extraPaths = [ "src/service_libs" ] },
-  { root = "src/sdk", pythonVersion = "3.0", extraPaths = [ "src/backend" ] },
-  { root = "src/tests", extraPaths = ["src/tests/e2e", "src/sdk" ]},
-  { root = "src" }
-]
-```
-
-## Diagnostic Settings Defaults
-
-Each diagnostic setting has a default that is dictated by the specified type checking mode. The default for each rule can be overridden in the configuration file or settings. In strict type checking mode, overrides may only increase the strictness (e.g. increase the severity level from `"warning"` to `"error"`).
-
-The following table lists the default severity levels for each diagnostic rule within each type checking mode (`"off"`, `"basic"`, `"standard"` and `"strict"`).
-
-| Diagnostic Rule                           | Off        | Basic      | Standard   | Strict     |
-| :---------------------------------------- | :--------- | :--------- | :--------- | :--------- |
-| analyzeUnannotatedFunctions               | true       | true       | true       | true       |
-| strictParameterNoneValue                  | true       | true       | true       | true       |
-| enableTypeIgnoreComments                  | true       | true       | true       | true       |
-| disableBytesTypePromotions                | false      | false      | false      | true       |
-| strictListInference                       | false      | false      | false      | true       |
-| strictDictionaryInference                 | false      | false      | false      | true       |
-| strictSetInference                        | false      | false      | false      | true       |
-| deprecateTypingAliases                    | false      | false      | false      | false      |
-| enableExperimentalFeatures                | false      | false      | false      | false      |
-| reportMissingModuleSource                 | "warning"  | "warning"  | "warning"  | "warning"  |
-| reportInvalidTypeForm                     | "warning"  | "error"    | "error"    | "error"    |
-| reportMissingImports                      | "warning"  | "error"    | "error"    | "error"    |
-| reportUndefinedVariable                   | "warning"  | "error"    | "error"    | "error"    |
-| reportAssertAlwaysTrue                    | "none"     | "warning"  | "warning"  | "error"    |
-| reportInvalidStringEscapeSequence         | "none"     | "warning"  | "warning"  | "error"    |
-| reportInvalidTypeVarUse                   | "none"     | "warning"  | "warning"  | "error"    |
-| reportMissingTypeStubs                    | "none"     | "warning"  | "warning"  | "error"    |
-| reportSelfClsParameterName                | "none"     | "warning"  | "warning"  | "error"    |
-| reportUnsupportedDunderAll                | "none"     | "warning"  | "warning"  | "error"    |
-| reportUnusedExpression                    | "none"     | "warning"  | "warning"  | "error"    |
-| reportWildcardImportFromLibrary           | "none"     | "warning"  | "warning"  | "error"    |
-| reportAbstractUsage                       | "none"     | "error"    | "error"    | "error"    |
-| reportArgumentType                        | "none"     | "error"    | "error"    | "error"    |
-| reportAssertTypeFailure                   | "none"     | "error"    | "error"    | "error"    |
-| reportAssignmentType                      | "none"     | "error"    | "error"    | "error"    |
-| reportAttributeAccessIssue                | "none"     | "error"    | "error"    | "error"    |
-| reportCallIssue                           | "none"     | "error"    | "error"    | "error"    |
-| reportGeneralTypeIssues                   | "none"     | "error"    | "error"    | "error"    |
-| reportInconsistentOverload                | "none"     | "error"    | "error"    | "error"    |
-| reportIndexIssue                          | "none"     | "error"    | "error"    | "error"    |
-| reportInvalidTypeArguments                | "none"     | "error"    | "error"    | "error"    |
-| reportNoOverloadImplementation            | "none"     | "error"    | "error"    | "error"    |
-| reportOperatorIssue                       | "none"     | "error"    | "error"    | "error"    |
-| reportOptionalSubscript                   | "none"     | "error"    | "error"    | "error"    |
-| reportOptionalMemberAccess                | "none"     | "error"    | "error"    | "error"    |
-| reportOptionalCall                        | "none"     | "error"    | "error"    | "error"    |
-| reportOptionalIterable                    | "none"     | "error"    | "error"    | "error"    |
-| reportOptionalContextManager              | "none"     | "error"    | "error"    | "error"    |
-| reportOptionalOperand                     | "none"     | "error"    | "error"    | "error"    |
-| reportRedeclaration                       | "none"     | "error"    | "error"    | "error"    |
-| reportReturnType                          | "none"     | "error"    | "error"    | "error"    |
-| reportTypedDictNotRequiredAccess          | "none"     | "error"    | "error"    | "error"    |
-| reportPrivateImportUsage                  | "none"     | "error"    | "error"    | "error"    |
-| reportUnboundVariable                     | "none"     | "error"    | "error"    | "error"    |
-| reportUnusedCoroutine                     | "none"     | "error"    | "error"    | "error"    |
-| reportUnusedExcept                        | "none"     | "error"    | "error"    | "error"    |
-| reportFunctionMemberAccess                | "none"     | "none"     | "error"    | "error"    |
-| reportIncompatibleMethodOverride          | "none"     | "none"     | "error"    | "error"    |
-| reportIncompatibleVariableOverride        | "none"     | "none"     | "error"    | "error"    |
-| reportOverlappingOverload                 | "none"     | "none"     | "error"    | "error"    |
-| reportPossiblyUnboundVariable             | "none"     | "none"     | "error"    | "error"    |
-| reportConstantRedefinition                | "none"     | "none"     | "none"     | "error"    |
-| reportDeprecated                          | "none"     | "none"     | "none"     | "error"    |
-| reportDuplicateImport                     | "none"     | "none"     | "none"     | "error"    |
-| reportIncompleteStub                      | "none"     | "none"     | "none"     | "error"    |
-| reportInconsistentConstructor             | "none"     | "none"     | "none"     | "error"    |
-| reportInvalidStubStatement                | "none"     | "none"     | "none"     | "error"    |
-| reportMatchNotExhaustive                  | "none"     | "none"     | "none"     | "error"    |
-| reportMissingParameterType                | "none"     | "none"     | "none"     | "error"    |
-| reportMissingTypeArgument                 | "none"     | "none"     | "none"     | "error"    |
-| reportPrivateUsage                        | "none"     | "none"     | "none"     | "error"    |
-| reportTypeCommentUsage                    | "none"     | "none"     | "none"     | "error"    |
-| reportUnknownArgumentType                 | "none"     | "none"     | "none"     | "error"    |
-| reportUnknownLambdaType                   | "none"     | "none"     | "none"     | "error"    |
-| reportUnknownMemberType                   | "none"     | "none"     | "none"     | "error"    |
-| reportUnknownParameterType                | "none"     | "none"     | "none"     | "error"    |
-| reportUnknownVariableType                 | "none"     | "none"     | "none"     | "error"    |
-| reportUnnecessaryCast                     | "none"     | "none"     | "none"     | "error"    |
-| reportUnnecessaryComparison               | "none"     | "none"     | "none"     | "error"    |
-| reportUnnecessaryContains                 | "none"     | "none"     | "none"     | "error"    |
-| reportUnnecessaryIsInstance               | "none"     | "none"     | "none"     | "error"    |
-| reportUnusedClass                         | "none"     | "none"     | "none"     | "error"    |
-| reportUnusedImport                        | "none"     | "none"     | "none"     | "error"    |
-| reportUnusedFunction                      | "none"     | "none"     | "none"     | "error"    |
-| reportUnusedVariable                      | "none"     | "none"     | "none"     | "error"    |
-| reportUntypedBaseClass                    | "none"     | "none"     | "none"     | "error"    |
-| reportUntypedClassDecorator               | "none"     | "none"     | "none"     | "error"    |
-| reportUntypedFunctionDecorator            | "none"     | "none"     | "none"     | "error"    |
-| reportUntypedNamedTuple                   | "none"     | "none"     | "none"     | "error"    |
-| reportCallInDefaultInitializer            | "none"     | "none"     | "none"     | "none"     |
-| reportImplicitOverride                    | "none"     | "none"     | "none"     | "none"     |
-| reportImplicitStringConcatenation         | "none"     | "none"     | "none"     | "none"     |
-| reportImportCycles                        | "none"     | "none"     | "none"     | "none"     |
-| reportMissingSuperCall                    | "none"     | "none"     | "none"     | "none"     |
-| reportPropertyTypeMismatch                | "none"     | "none"     | "none"     | "none"     |
-| reportShadowedImports                     | "none"     | "none"     | "none"     | "none"     |
-| reportUninitializedInstanceVariable       | "none"     | "none"     | "none"     | "none"     |
-| reportUnnecessaryTypeIgnoreComment        | "none"     | "none"     | "none"     | "none"     |
-| reportUnusedCallResult                    | "none"     | "none"     | "none"     | "none"     |
-
-
-## Locale Configuration
-
-Pyright provides diagnostic messages that are translated to multiple languages. By default, pyright uses the default locale of the operating system. You can override the desired locale through the use of one of the following environment variables, listed in priority order.
-
-```
-LC_ALL="de"
-LC_MESSAGES="en-us"
-LANG="zh-cn"
-LANGUAGE="fr"
-```
